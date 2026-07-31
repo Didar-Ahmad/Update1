@@ -78,14 +78,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Didar.Press — Wall Posters & Art Prints" },
+      { title: "PostersByDidar — Wall Posters & Art Prints" },
       {
         name: "description",
         content:
           "Wall posters printed to order — A4, A3, A2 and more. Order and pay via WhatsApp.",
       },
-      { name: "author", content: "Didar.Press" },
-      { property: "og:title", content: "Didar.Press — Wall Posters & Art Prints" },
+      { name: "author", content: "PostersByDidar" },
+      { property: "og:title", content: "PostersByDidar — Wall Posters & Art Prints" },
       {
         property: "og:description",
         content: "Wall posters printed to order in multiple sizes. Order via WhatsApp.",
@@ -98,7 +98,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Work+Sans:wght@300;400;500;600&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap",
       },
       {
         rel: "stylesheet",

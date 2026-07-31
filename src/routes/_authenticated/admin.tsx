@@ -34,10 +34,10 @@ import {
 export const Route = createFileRoute("/_authenticated/admin")({
   head: () => ({
     meta: [
-      { title: "Dashboard — Didar.Press" },
-      { name: "description", content: "Add, update and remove posters in the Didar.Press catalogue." },
-      { property: "og:title", content: "Dashboard — Didar.Press" },
-      { property: "og:description", content: "Manage the Didar.Press poster catalogue." },
+      { title: "Dashboard — PostersByDidar" },
+      { name: "description", content: "Add, update and remove posters in the PostersByDidar catalogue." },
+      { property: "og:title", content: "Dashboard — PostersByDidar" },
+      { property: "og:description", content: "Manage the PostersByDidar poster catalogue." },
     ],
   }),
   component: AdminPage,
@@ -336,7 +336,7 @@ function AdminPage() {
             <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">Dashboard</p>
             <h1 className="mt-2 text-4xl">Posters</h1>
           </div>
-          <Button onClick={openCreate} className="rounded-full">
+          <Button onClick={openCreate} className="rounded-none">
             <Plus className="mr-1 h-4 w-4" /> Add poster
           </Button>
         </div>
@@ -396,15 +396,15 @@ function AdminPage() {
                           {print.sizes.map((s) => (
                             <span
                               key={s.label}
-                              className="rounded-full border border-border px-2 py-0.5 text-xs text-muted-foreground"
+                              className="rounded-none border border-border px-2 py-0.5 font-mono text-xs text-muted-foreground"
                             >
-                              {s.label} £{s.price.toFixed(2)}
+                              {s.label} ₹{s.price.toFixed(2)}
                             </span>
                           ))}
                         </div>
                       ) : (
                         <span className="text-muted-foreground">
-                          {print.size} · £{print.price.toFixed(2)}
+                          {print.size} · ₹{print.price.toFixed(2)}
                         </span>
                       )}
                     </td>
@@ -549,15 +549,20 @@ function AdminPage() {
                       onChange={(e) => updateSizeRow(index, { label: e.target.value })}
                       className="flex-1"
                     />
-                    <Input
-                      type="number"
-                      min="0"
-                      step="0.01"
-                      placeholder="Price £"
-                      value={row.price}
-                      onChange={(e) => updateSizeRow(index, { price: e.target.value })}
-                      className="w-28"
-                    />
+                    <div className="relative w-28">
+                      <span className="pointer-events-none absolute left-2.5 top-1/2 -translate-y-1/2 text-sm text-muted-foreground">
+                        ₹
+                      </span>
+                      <Input
+                        type="number"
+                        min="0"
+                        step="0.01"
+                        placeholder="0.00"
+                        value={row.price}
+                        onChange={(e) => updateSizeRow(index, { price: e.target.value })}
+                        className="pl-6"
+                      />
+                    </div>
                     <Button
                       type="button"
                       variant="ghost"

@@ -10,10 +10,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 export const Route = createFileRoute("/auth")({
   head: () => ({
     meta: [
-      { title: "Studio login — Didar.Press" },
-      { name: "description", content: "Sign in to manage the Didar.Press print catalogue." },
-      { property: "og:title", content: "Studio login — Didar.Press" },
-      { property: "og:description", content: "Sign in to manage the Didar.Press print catalogue." },
+      { title: "Studio login — PostersByDidar" },
+      { name: "description", content: "Sign in to manage the PostersByDidar print catalogue." },
+      { property: "og:title", content: "Studio login — PostersByDidar" },
+      { property: "og:description", content: "Sign in to manage the PostersByDidar print catalogue." },
     ],
   }),
   component: AuthPage,
@@ -21,7 +21,6 @@ export const Route = createFileRoute("/auth")({
 
 function AuthPage() {
   const navigate = useNavigate();
-  const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -36,20 +35,9 @@ function AuthPage() {
     e.preventDefault();
     setLoading(true);
     try {
-      if (mode === "signup") {
-        const { error } = await supabase.auth.signUp({
-          email,
-          password,
-          options: { emailRedirectTo: window.location.origin },
-        });
-        if (error) throw error;
-        toast.success("Account created. You can sign in now.");
-        setMode("signin");
-      } else {
-        const { error } = await supabase.auth.signInWithPassword({ email, password });
-        if (error) throw error;
-        navigate({ to: "/admin", replace: true });
-      }
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) throw error;
+      navigate({ to: "/admin", replace: true });
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Something went wrong");
     } finally {
@@ -61,19 +49,13 @@ function AuthPage() {
     <div className="flex min-h-screen items-center justify-center px-5 py-12">
       <div className="w-full max-w-sm">
         <Link to="/" className="block text-center font-serif text-2xl">
-          Didar<span className="text-primary">.</span>Press
+          Posters<span className="text-primary">By</span>Didar
         </Link>
 
         <Card className="mt-6">
           <CardHeader>
-            <CardTitle className="font-serif text-2xl font-normal">
-              {mode === "signin" ? "Studio login" : "Create an account"}
-            </CardTitle>
-            <CardDescription>
-              {mode === "signin"
-                ? "Sign in to manage prints and posters."
-                : "Register, then ask an admin to grant you access."}
-            </CardDescription>
+            <CardTitle className="font-serif text-2xl font-normal">Studio login</CardTitle>
+            <CardDescription>This sign-in is for shop management only.</CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={submit} className="space-y-4">
@@ -99,19 +81,9 @@ function AuthPage() {
                 />
               </div>
               <Button type="submit" className="w-full" disabled={loading}>
-                {loading ? "Please wait…" : mode === "signin" ? "Sign in" : "Sign up"}
+                {loading ? "Please wait…" : "Sign in"}
               </Button>
             </form>
-
-            <button
-              type="button"
-              onClick={() => setMode(mode === "signin" ? "signup" : "signin")}
-              className="mt-5 w-full text-center text-sm text-muted-foreground hover:text-foreground"
-            >
-              {mode === "signin"
-                ? "Need an account? Sign up"
-                : "Already have an account? Sign in"}
-            </button>
           </CardContent>
         </Card>
       </div>

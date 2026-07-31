@@ -1,4 +1,4 @@
-# Didar.Press — Art Prints & Posters
+# PostersByDidar — Wall Posters, Printed to Order
 
 A small-batch print studio storefront: browse prints/posters, and a studio
 admin area (email/password login) for managing the catalogue. Built with

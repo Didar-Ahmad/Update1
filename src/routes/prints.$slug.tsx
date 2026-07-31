@@ -5,6 +5,7 @@ import { ArrowLeft, MessageCircle } from "lucide-react";
 import { getPrintBySlug } from "@/lib/prints.functions";
 import { whatsappLink } from "@/lib/site-config";
 import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
@@ -25,10 +26,10 @@ export const Route = createFileRoute("/prints/$slug")({
   },
   head: ({ loaderData }) => {
     const title = loaderData?.print
-      ? `${loaderData.print.title} — Didar.Press`
-      : "Poster — Didar.Press";
+      ? `${loaderData.print.title} — PostersByDidar`
+      : "Poster — PostersByDidar";
     const description =
-      loaderData?.print?.description ?? "A wall poster from the Didar.Press studio.";
+      loaderData?.print?.description ?? "A wall poster from the PostersByDidar studio.";
     const image = loaderData?.print?.image_url;
     return {
       meta: [
@@ -70,7 +71,7 @@ function PrintDetail() {
   const orderMessage = [
     `Hi! I'd like to order this poster:`,
     print.title,
-    `Size: ${selected.label} — £${selected.price.toFixed(2)}`,
+    `Size: ${selected.label} — ₹${selected.price.toFixed(2)}`,
     typeof window !== "undefined" ? window.location.href : "",
   ]
     .filter(Boolean)
@@ -88,43 +89,45 @@ function PrintDetail() {
         </Link>
 
         <div className="mt-8 grid gap-10 md:grid-cols-2">
-          <div className="overflow-hidden rounded-sm border border-border bg-secondary">
+          <div className="reg-mark overflow-hidden border-2 border-foreground bg-secondary">
             <img src={print.image_url} alt={print.title} className="w-full object-cover" />
           </div>
 
           <div className="md:pt-6">
-            <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">
+            <p className="font-mono text-xs uppercase tracking-[0.22em] text-primary">
               {print.category}
             </p>
-            <h1 className="mt-3 text-4xl">{print.title}</h1>
-            <p className="mt-4 text-2xl">£{selected.price.toFixed(2)}</p>
+            <h1 className="mt-3 text-4xl normal-case">{print.title}</h1>
+            <p className="mt-4 font-mono text-2xl">₹{selected.price.toFixed(2)}</p>
             <p className="mt-6 max-w-prose leading-relaxed text-muted-foreground">
               {print.description}
             </p>
 
             {hasSizes && (
               <div className="mt-8">
-                <p className="text-sm text-muted-foreground">Choose a size</p>
+                <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
+                  Choose a size
+                </p>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {print.sizes.map((option, index) => (
                     <button
                       key={option.label}
                       type="button"
                       onClick={() => setSelectedIndex(index)}
-                      className={`rounded-full border px-4 py-2 text-sm transition-colors ${
+                      className={`border px-4 py-2 font-mono text-sm transition-colors ${
                         index === selectedIndex
                           ? "border-foreground bg-foreground text-background"
                           : "border-border text-muted-foreground hover:border-foreground/40"
                       }`}
                     >
-                      {option.label} · £{option.price.toFixed(2)}
+                      {option.label} · ₹{option.price.toFixed(2)}
                     </button>
                   ))}
                 </div>
               </div>
             )}
 
-            <dl className="mt-8 grid grid-cols-2 gap-4 border-y border-border py-6 text-sm">
+            <dl className="mt-8 grid grid-cols-2 gap-4 border-y-2 border-foreground py-6 font-mono text-sm">
               <div>
                 <dt className="text-muted-foreground">Paper size</dt>
                 <dd className="mt-1">{selected.label}</dd>
@@ -132,7 +135,13 @@ function PrintDetail() {
               <div>
                 <dt className="text-muted-foreground">Availability</dt>
                 <dd className="mt-1">
-                  {print.in_stock ? "Printed to order" : <Badge variant="secondary">Sold out</Badge>}
+                  {print.in_stock ? (
+                    "Printed to order"
+                  ) : (
+                    <Badge variant="secondary" className="rounded-none">
+                      Sold out
+                    </Badge>
+                  )}
                 </dd>
               </div>
             </dl>
@@ -140,7 +149,7 @@ function PrintDetail() {
             <Button
               asChild={print.in_stock}
               size="lg"
-              className="mt-8 w-full gap-2 rounded-full bg-[#25D366] text-white hover:bg-[#1ebe5a]"
+              className="mt-8 w-full gap-2 rounded-none bg-[#25D366] font-mono uppercase tracking-wide text-white hover:bg-[#1ebe5a]"
               disabled={!print.in_stock}
             >
               {print.in_stock ? (
@@ -157,6 +166,7 @@ function PrintDetail() {
           </div>
         </div>
       </main>
+      <SiteFooter />
     </div>
   );
 }

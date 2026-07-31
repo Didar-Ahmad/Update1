@@ -19,8 +19,9 @@
  */
 
 @theme inline {
-  --font-sans: "Work Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Anton", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -64,74 +65,77 @@
 }
 
 :root {
-  --radius: 0.3rem;
-  --background: oklch(0.978 0.012 85);
-  --foreground: oklch(0.205 0.018 55);
-  --card: oklch(0.995 0.006 85);
-  --card-foreground: oklch(0.205 0.018 55);
-  --popover: oklch(0.995 0.006 85);
-  --popover-foreground: oklch(0.205 0.018 55);
-  --primary: oklch(0.55 0.185 33);
-  --primary-foreground: oklch(0.985 0.01 85);
-  --secondary: oklch(0.938 0.016 82);
-  --secondary-foreground: oklch(0.26 0.02 55);
-  --muted: oklch(0.938 0.016 82);
-  --muted-foreground: oklch(0.5 0.022 60);
-  --accent: oklch(0.918 0.03 82);
-  --accent-foreground: oklch(0.26 0.02 55);
-  --destructive: oklch(0.53 0.2 27);
-  --destructive-foreground: oklch(0.985 0.01 85);
-  --border: oklch(0.888 0.018 80);
-  --input: oklch(0.888 0.018 80);
-  --ring: oklch(0.55 0.185 33);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
+  --radius: 0rem;
+  /* Paper white — cooler and flatter than a cream, like uncoated stock */
+  --background: oklch(0.99 0.002 100);
+  /* Ink black with a hair of cool blue, like fresh black toner */
+  --foreground: oklch(0.16 0.012 265);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.16 0.012 265);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.16 0.012 265);
+  /* Deep brass/bronze — a single restrained accent, gallery-label style */
+  --primary: oklch(0.4 0.06 75);
+  --primary-foreground: oklch(0.99 0.004 100);
+  --secondary: oklch(0.96 0.003 100);
+  --secondary-foreground: oklch(0.16 0.012 265);
+  --muted: oklch(0.955 0.003 100);
+  --muted-foreground: oklch(0.46 0.012 265);
+  --accent: oklch(0.94 0.008 85);
+  --accent-foreground: oklch(0.99 0.004 100);
+  --destructive: oklch(0.55 0.22 27);
+  --destructive-foreground: oklch(0.99 0.004 100);
+  --border: oklch(0.89 0.004 100);
+  --input: oklch(0.89 0.004 100);
+  --ring: oklch(0.4 0.06 75);
+  --chart-1: oklch(0.4 0.06 75);
+  --chart-2: oklch(0.55 0.01 70);
+  --chart-3: oklch(0.7 0.05 80);
+  --chart-4: oklch(0.16 0.012 265);
+  --chart-5: oklch(0.46 0.012 265);
+  --sidebar: oklch(0.99 0.002 100);
+  --sidebar-foreground: oklch(0.16 0.012 265);
+  --sidebar-primary: oklch(0.4 0.06 75);
+  --sidebar-primary-foreground: oklch(0.99 0.004 100);
+  --sidebar-accent: oklch(0.96 0.003 100);
+  --sidebar-accent-foreground: oklch(0.16 0.012 265);
+  --sidebar-border: oklch(0.89 0.004 100);
+  --sidebar-ring: oklch(0.4 0.06 75);
 }
 
 .dark {
-  --background: oklch(0.19 0.014 55);
-  --foreground: oklch(0.955 0.012 85);
-  --card: oklch(0.235 0.016 55);
-  --card-foreground: oklch(0.955 0.012 85);
-  --popover: oklch(0.235 0.016 55);
-  --popover-foreground: oklch(0.955 0.012 85);
-  --primary: oklch(0.66 0.17 38);
-  --primary-foreground: oklch(0.18 0.014 55);
-  --secondary: oklch(0.28 0.016 55);
-  --secondary-foreground: oklch(0.955 0.012 85);
-  --muted: oklch(0.28 0.016 55);
-  --muted-foreground: oklch(0.72 0.018 70);
-  --accent: oklch(0.32 0.02 55);
-  --accent-foreground: oklch(0.955 0.012 85);
+  --background: oklch(0.14 0.012 265);
+  --foreground: oklch(0.97 0.003 100);
+  --card: oklch(0.18 0.014 265);
+  --card-foreground: oklch(0.97 0.003 100);
+  --popover: oklch(0.18 0.014 265);
+  --popover-foreground: oklch(0.97 0.003 100);
+  --primary: oklch(0.74 0.09 80);
+  --primary-foreground: oklch(0.14 0.012 265);
+  --secondary: oklch(0.23 0.014 265);
+  --secondary-foreground: oklch(0.97 0.003 100);
+  --muted: oklch(0.23 0.014 265);
+  --muted-foreground: oklch(0.68 0.012 265);
+  --accent: oklch(0.26 0.01 265);
+  --accent-foreground: oklch(0.14 0.012 265);
   --destructive: oklch(0.62 0.2 27);
-  --destructive-foreground: oklch(0.985 0.01 85);
-  --border: oklch(1 0 0 / 12%);
+  --destructive-foreground: oklch(0.97 0.003 100);
+  --border: oklch(1 0 0 / 14%);
   --input: oklch(1 0 0 / 16%);
-  --ring: oklch(0.66 0.17 38);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
+  --ring: oklch(0.74 0.09 80);
+  --chart-1: oklch(0.74 0.09 80);
+  --chart-2: oklch(0.6 0.01 70);
+  --chart-3: oklch(0.78 0.06 85);
+  --chart-4: oklch(0.97 0.003 100);
+  --chart-5: oklch(0.68 0.012 265);
+  --sidebar: oklch(0.18 0.014 265);
+  --sidebar-foreground: oklch(0.97 0.003 100);
+  --sidebar-primary: oklch(0.74 0.09 80);
+  --sidebar-primary-foreground: oklch(0.14 0.012 265);
+  --sidebar-accent: oklch(0.23 0.014 265);
+  --sidebar-accent-foreground: oklch(0.97 0.003 100);
+  --sidebar-border: oklch(1 0 0 / 14%);
+  --sidebar-ring: oklch(0.74 0.09 80);
 }
 
 @layer base {
@@ -149,6 +153,37 @@
   h1, h2, h3 {
     font-family: var(--font-serif);
     font-weight: 400;
-    letter-spacing: -0.015em;
+    letter-spacing: 0.002em;
+    text-transform: uppercase;
   }
+}
+
+/*
+ * Registration marks — the little crosshair/bracket marks printers use to
+ * align color-separation plates. This is the site's one signature motif:
+ * used sparingly on the hero and section corners, never as pure decoration.
+ */
+.reg-mark {
+  position: relative;
+}
+.reg-mark::before,
+.reg-mark::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+  border-color: var(--color-primary);
+}
+.reg-mark::before {
+  top: -1px;
+  left: -1px;
+  border-top: 2px solid;
+  border-left: 2px solid;
+}
+.reg-mark::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 2px solid;
+  border-right: 2px solid;
 }

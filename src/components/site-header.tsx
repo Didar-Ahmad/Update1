@@ -37,29 +37,29 @@ export function SiteHeader() {
     };
   }, []);
 
+  const navLink = (active: boolean) =>
+    `border-b-2 px-1 py-1 font-mono text-xs uppercase tracking-[0.14em] transition-colors ${
+      active
+        ? "border-primary text-foreground"
+        : "border-transparent text-muted-foreground hover:border-border hover:text-foreground"
+    }`;
+
   return (
-    <header className="sticky top-0 z-40 border-b border-border/70 bg-background/85 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b-2 border-foreground bg-background">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5">
-        <Link to="/" className="font-serif text-2xl leading-none tracking-tight">
-          Didar<span className="text-primary">.</span>Press
+        <Link
+          to="/"
+          className="reg-mark px-2 font-serif text-lg leading-none whitespace-nowrap sm:text-2xl"
+        >
+          POSTERS<span className="text-primary">BY</span>DIDAR
         </Link>
 
-        <nav className="flex items-center gap-1 text-sm">
-          <Link
-            to="/"
-            className={`rounded-full px-3 py-1.5 transition-colors hover:bg-secondary ${
-              pathname === "/" ? "text-foreground" : "text-muted-foreground"
-            }`}
-          >
+        <nav className="flex items-center gap-5">
+          <Link to="/" className={navLink(pathname === "/")}>
             Shop
           </Link>
           {isAdmin && (
-            <Link
-              to="/admin"
-              className={`rounded-full px-3 py-1.5 transition-colors hover:bg-secondary ${
-                pathname.startsWith("/admin") ? "text-foreground" : "text-muted-foreground"
-              }`}
-            >
+            <Link to="/admin" className={navLink(pathname.startsWith("/admin"))}>
               Dashboard
             </Link>
           )}
@@ -67,7 +67,7 @@ export function SiteHeader() {
             <Button
               variant="outline"
               size="sm"
-              className="ml-2"
+              className="ml-1 rounded-none border-foreground font-mono text-xs uppercase tracking-wider"
               onClick={async () => {
                 await supabase.auth.signOut();
                 window.location.href = "/";
@@ -76,7 +76,11 @@ export function SiteHeader() {
               Sign out
             </Button>
           ) : (
-            <Button asChild size="sm" className="ml-2">
+            <Button
+              asChild
+              size="sm"
+              className="ml-1 rounded-none font-mono text-xs uppercase tracking-wider"
+            >
               <Link to="/auth">Sign in</Link>
             </Button>
           )}
